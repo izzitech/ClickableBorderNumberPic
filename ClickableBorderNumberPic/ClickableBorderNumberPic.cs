@@ -12,62 +12,71 @@ namespace ClickableBorderNumberPic
 {
     public partial class ClickableBorderNumberPic : UserControl
     {
-        public int value = 1;
+        public int id = 1;
         public bool status = false;
-        public int borderSize = 0;
+        public int borderSize = 2;
+        public string imagePath = @".\testing\gato.jpg";
+        public int formWidth = 200;
+        public int formHeight = 130;
 
-        Label number = new Label();
-        Random ran = new Random();
+        Label numberShown = new Label();
         Color statusColor = new Color();
         PictureBox picture = new PictureBox();
         Point pictureLocation = new Point();
-        Rectangle formSize = new Rectangle();
 
         public ClickableBorderNumberPic()
         {
             InitializeComponent();
-            formSize = this.ClientRectangle;
+            formWidth = this.Width;
+            formHeight = this.Height;
+            this.Click += picOnClick;
         }
 
-        public void Create(int formWidth, int formHeight)
+        public void Create()
         {
-            this.Width = formWidth;
-            this.Height = formHeight;
-
-            if (status)
-            {
-                statusColor = Color.Green;
-            }
-            else
-            {
-                statusColor = Color.Red;
-            }
-
+            statusColor = status ? Color.Green : Color.Red;
             this.BackColor = statusColor;
 
-            // number.AutoSize = true;
-            number.Width = 28;
-            number.Height = 18;
-            number.BackColor = statusColor;
-            number.Text = value.ToString();
-            number.TextAlign = ContentAlignment.MiddleCenter;
-            this.Controls.Add(number);
+            if (this.Width != formWidth) this.Width = formWidth;
+            if (this.Height != formHeight) this.Height = formHeight;
 
-            picture.ImageLocation = @"D:\oto.jpg";
+            // number.AutoSize = true;
+            numberShown.Width = 28;
+            numberShown.Height = 18;
+            numberShown.BackColor = statusColor;
+            numberShown.Text = id.ToString();
+            numberShown.TextAlign = ContentAlignment.MiddleCenter;
+            this.Controls.Add(numberShown);
+
+            picture.ImageLocation = imagePath;
             pictureLocation.X = this.Location.X + borderSize;
-            pictureLocation.Y= this.Location.Y + borderSize;
+            pictureLocation.Y = this.Location.Y + borderSize;
             picture.Location = pictureLocation;
-            picture.Width = this.Width - (6 + (2*borderSize));
-            picture.Height = this.Height - (6 + (2*borderSize));
+            picture.Width = this.Width - (6 + (2 * borderSize));
+            picture.Height = this.Height - (6 + (2 * borderSize));
             // TODO: Change to "zoom". Stretch is just for showing but distorts image!!
             picture.SizeMode = PictureBoxSizeMode.StretchImage;
+            picture.MouseDown += picOnClick;
             this.Controls.Add(picture);
         }
-
-        public void changeValue(int _value)
+    
+        public void picOnClick(object sender, EventArgs e)
         {
-            value = _value;
-            number.Text = _value.ToString();
+            changeStatus(!status);
+        }
+
+        public void changeID(int _ID)
+        {
+            id = _ID;
+            numberShown.Text = _ID.ToString();
+        }
+
+        public void changeStatus(bool _status)
+        {
+            status = _status;
+            statusColor = status ? Color.Green : Color.Red;
+            this.BackColor = statusColor;
+            numberShown.BackColor = statusColor;
         }
     }
 }
