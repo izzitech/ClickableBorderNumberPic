@@ -12,15 +12,28 @@ namespace ClickableBorderNumberPic
 {
     public partial class ClickableBorderNumberPic : UserControl
     {
-        public int value = 13;
+        public int value = 1;
         public bool status = false;
-        public int borderSize = 4;
+        public int borderSize = 0;
+
+        Label number = new Label();
+        Random ran = new Random();
+        Color statusColor = new Color();
+        PictureBox picture = new PictureBox();
+        Point pictureLocation = new Point();
+        Rectangle formSize = new Rectangle();
 
         public ClickableBorderNumberPic()
         {
             InitializeComponent();
+            formSize = this.ClientRectangle;
+        }
 
-            Color statusColor = new Color();
+        public void Create(int formWidth, int formHeight)
+        {
+            this.Width = formWidth;
+            this.Height = formHeight;
+
             if (status)
             {
                 statusColor = Color.Green;
@@ -32,7 +45,6 @@ namespace ClickableBorderNumberPic
 
             this.BackColor = statusColor;
 
-            Label number = new Label();
             // number.AutoSize = true;
             number.Width = 28;
             number.Height = 18;
@@ -41,19 +53,21 @@ namespace ClickableBorderNumberPic
             number.TextAlign = ContentAlignment.MiddleCenter;
             this.Controls.Add(number);
 
-            PictureBox picture = new PictureBox();
             picture.ImageLocation = @"D:\oto.jpg";
-            
-            Point pictureLocation = new Point();
             pictureLocation.X = this.Location.X + borderSize;
             pictureLocation.Y= this.Location.Y + borderSize;
-
             picture.Location = pictureLocation;
-            picture.Width = this.Width - (2*borderSize);
-            picture.Height = this.Height - (2*borderSize); 
+            picture.Width = this.Width - (6 + (2*borderSize));
+            picture.Height = this.Height - (6 + (2*borderSize));
+            // TODO: Change to "zoom". Stretch is just for showing but distorts image!!
             picture.SizeMode = PictureBoxSizeMode.StretchImage;
             this.Controls.Add(picture);
-            
+        }
+
+        public void changeValue(int _value)
+        {
+            value = _value;
+            number.Text = _value.ToString();
         }
     }
 }
