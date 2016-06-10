@@ -30,12 +30,12 @@
         {
             this.SuspendLayout();
             // 
-            // ClickableBorderNumberPic
+            // PictureFrame
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Name = "ClickableBorderNumberPic";
-            this.Size = new System.Drawing.Size(200, 130);
+            this.Name = "PictureFrame";
+            this.Size = new System.Drawing.Size(173, 130);
             this.ResumeLayout(false);
 
         }
