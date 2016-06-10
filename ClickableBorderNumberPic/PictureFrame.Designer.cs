@@ -1,6 +1,6 @@
-﻿namespace ClickableBorderNumberPic
+﻿namespace PictureFrame
 {
-    partial class ClickableBorderNumberPic
+    partial class PictureFrame
     {
         /// <summary> 
         /// Required designer variable.
