@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace PictureFrame
+namespace PictureFrameControl
 {
     public partial class PictureFrame : UserControl
     {

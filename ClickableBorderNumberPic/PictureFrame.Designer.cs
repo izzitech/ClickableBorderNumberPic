@@ -1,4 +1,4 @@
-﻿namespace PictureFrame
+﻿namespace PictureFrameControl
 {
     partial class PictureFrame
     {
